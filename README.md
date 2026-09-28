@@ -52,8 +52,8 @@ npm start
 ## Progress
 
 * [x] Day 1 — JavaScript Backend Foundations
-* [ ] Day 2 — TypeScript
-* [ ] Day 3 — Node.js, HTTP & Express
+* [x] Day 2 — TypeScript
+* [x] Day 3 — Node.js, HTTP & Express
 
 ## Author
 
