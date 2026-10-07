@@ -1,0 +1,61 @@
+hnry01@brandfordPC:~/myDevWork/backendDev/src/day4/schema$ sudo -u postgres psql -d task_manager_day4
+psql (16.15 (Ubuntu 16.15-0ubuntu0.24.04.1))
+Type "help" for help.
+
+task_manager_day4=# SELECT * FROM users;
+ id | name  |       email       |         created_at         
+----+-------+-------------------+----------------------------
+  1 | Henry | henry@example.com | 2026-10-07 04:36:12.564318
+  2 | John  | john@example.com  | 2026-10-07 04:36:12.564318
+(2 rows)
+
+task_manager_day4=# SELECT users.name, tasks.title
+FROM users
+JOIN tasks
+ON users.id = tasks.user_id;
+ name  |      title       
+-------+------------------
+ Henry | Learn PostgreSQL
+ Henry | Learn Express
+ John  | Learn TypeScript
+ Henry | Build Task API
+(4 rows)
+
+task_manager_day4=# SELECT *
+FROM tasks
+WHERE completed = false;
+ id |      title       |           description           | completed | user_id |         created_at         
+----+------------------+---------------------------------+-----------+---------+----------------------------
+  1 | Learn PostgreSQL | Understand databases and SQL    | f         |       1 | 2026-10-07 04:36:12.567336
+  3 | Learn TypeScript | Understand types and interfaces | f         |       2 | 2026-10-07 04:36:12.567336
+  4 | Build Task API   | Connect Express to PostgreSQL   | f         |       1 | 2026-10-07 04:36:12.567336
+(3 rows)
+
+task_manager_day4=# SELECT *
+FROM tasks
+WHERE user_id = 1;
+ id |      title       |          description          | completed | user_id |         created_at         
+----+------------------+-------------------------------+-----------+---------+----------------------------
+  1 | Learn PostgreSQL | Understand databases and SQL  | f         |       1 | 2026-10-07 04:36:12.567336
+  2 | Learn Express    | Build REST APIs with Express  | t         |       1 | 2026-10-07 04:36:12.567336
+  4 | Build Task API   | Connect Express to PostgreSQL | f         |       1 | 2026-10-07 04:36:12.567336
+(3 rows)
+
+task_manager_day4=# SELECT *
+FROM tasks
+ORDER BY created_at DESC;
+ id |      title       |           description           | completed | user_id |         created_at         
+----+------------------+---------------------------------+-----------+---------+----------------------------
+  1 | Learn PostgreSQL | Understand databases and SQL    | f         |       1 | 2026-10-07 04:36:12.567336
+  2 | Learn Express    | Build REST APIs with Express    | t         |       1 | 2026-10-07 04:36:12.567336
+  3 | Learn TypeScript | Understand types and interfaces | f         |       2 | 2026-10-07 04:36:12.567336
+  4 | Build Task API   | Connect Express to PostgreSQL   | f         |       1 | 2026-10-07 04:36:12.567336
+(4 rows)
+
+task_manager_day4=# SELECT *
+FROM tasks
+LIMIT 2;
+ id |      title       |         description          | completed | user_id |         created_at         
+----+------------------+------------------------------+-----------+---------+----------------------------
+  1 | Learn PostgreSQL | Understand databases and SQL | f         |       1 | 2026-10-07 04:36:12.567336
+  2 | Learn Express    | Build REST APIs with Express | t         |       1 | 2026-10-07 04:36:12.567336
